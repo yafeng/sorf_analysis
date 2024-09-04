@@ -24,21 +24,25 @@ Required softwares:
 
 # Step 2- Prepare small ORFs protein database
 **2.1 download sORFs protein sequences** from [sORF.org](http://www.sorfs.org), which is a public repository of small open reading frames (sORFs) identified by ribosome profiling (RIBO-seq). After you get the file "sORFs.org.db.mouse.txt", you can proceed the netxt step. 
+
 **2.2 download the Uniprot mouse reference protein database and supplment mouse sORFs proteins**
+
 ```python tofasta.py sORFs.org.db.mouse.txt sORFs.org.db.mouse.fasta
 
    cat sORFs.org.db.mouse.fasta uniprot.mouse.protein.fasta > uniprot.mouse.protein+sORFs.fasta
 ```
 **2.3 create target and decoy protein database**,the decoy DB was produced by reversing protein sequences in the target database.
+
 ```python decoy.py uniprot.mouse.protein+sORFs.fasta uniprot.mouse.protein+sORFs.revCat.fasta```
 
-***2.4 Index the target and decoy database**
+**2.4 Index the target and decoy database**
 
 ```java -Xmx10000M -cp MSGFPlus.jar edu.ucsd.msjava.msdbsearch.BuildSA -d uniprot.mouse.protein+sORFs.revCat.fasta -tda 0```
 
 
 # Step 3 Paralle database search using nextflow
 **3.1 prepare a input, tab delimited file with two column**:  absolute file path of mzmL files and setname. The setnames are used to group mzmL. If you wish to get one FDR for MS files, use one setname for all files. If you wish to calculate separate FDR for a subset of MS files, use different setnames for different subgroups.
+
 e.g. PXD001250_mzmlfiles_setnames.txt
 
 /file_absolute_path/xxx.mzml	set1
