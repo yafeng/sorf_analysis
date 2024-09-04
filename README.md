@@ -12,26 +12,28 @@ Required softwares:
 
 
 # Step 1 - Prepare MS data
-**1.1 download MS data from PRIDE proteomics data repository,here we use the mouse brain proteommics dataset PXD001250 as an example.
+**1.1 download MS data from PRIDE proteomics data repository**,here we use the mouse brain proteommics dataset PXD001250 as an example.
 
 ```wget  ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD001250```
 
-**1.2 convert MS raw data to mzml format
+**1.2 convert MS raw data to mzml format**
 
 ```cat rawfilelist.txt |parallel -j 24 mono ThermoRawFileParser.exe -i={} -o=/data/home/yz332/MS_data/PXD001250_mzML/ -f=1 -m=1' ```
 `-o` :the converted  output file path
 `-j` : the numbers of cores to run in parallel
 
 # Step 2- Prepare small ORFs protein database
-**2.1 download sORFs protein sequences from [sORF.org](http://www.sorfs.org), which is a public repository of small open reading frames (sORFs) identified by ribosome profiling (RIBO-seq). After you get the file "sORFs.org.db.mouse.txt", you can proceed the netxt step. 
-**2.2 download the Uniprot mouse reference protein database and supplment mouse sORFs proteins
+**2.1 download sORFs protein sequences** from [sORF.org](http://www.sorfs.org), which is a public repository of small open reading frames (sORFs) identified by ribosome profiling (RIBO-seq). After you get the file "sORFs.org.db.mouse.txt", you can proceed the netxt step. 
+**2.2 download the Uniprot mouse reference protein database and supplment mouse sORFs proteins**
 ```python tofasta.py sORFs.org.db.mouse.txt sORFs.org.db.mouse.fasta
+
    cat sORFs.org.db.mouse.fasta uniprot.mouse.protein.fasta > uniprot.mouse.protein+sORFs.fasta
 ```
-**2.3 create target and decoy protein database,the decoy DB was produced by reversing protein sequences in the target database.
+**2.3 create target and decoy protein database**,the decoy DB was produced by reversing protein sequences in the target database.
 ```python decoy.py uniprot.mouse.protein+sORFs.fasta uniprot.mouse.protein+sORFs.revCat.fasta```
 
-***2.4 Index the target and decoy database
+***2.4 Index the target and decoy database**
+
 ```java -Xmx10000M -cp MSGFPlus.jar edu.ucsd.msjava.msdbsearch.BuildSA -d uniprot.mouse.protein+sORFs.revCat.fasta -tda 0```
 
 
