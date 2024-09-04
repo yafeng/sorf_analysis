@@ -11,7 +11,7 @@ Required softwares:
 4.[Nextflow](https://nextflow.io)
 
 
-#Step 1 - Prepare MS data
+# Step 1 - Prepare MS data
 **1.1 download MS data from PRIDE proteomics data repository,here we use the mouse brain proteommics dataset PXD001250 as an example.
 
 ```wget  ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2015/10/PXD001250```
@@ -22,7 +22,7 @@ Required softwares:
 `-o` :the converted  output file path
 `-j` : the numbers of cores to run in parallel
 
-#Step 2- Prepare small ORFs protein database
+# Step 2- Prepare small ORFs protein database
 **2.1 download sORFs protein sequences from [sORF.org](http://www.sorfs.org), which is a public repository of small open reading frames (sORFs) identified by ribosome profiling (RIBO-seq). After you get the file "sORFs.org.db.mouse.txt", you can proceed the netxt step. 
 **2.2 download the Uniprot mouse reference protein database and supplment mouse sORFs proteins
 ```python tofasta.py sORFs.org.db.mouse.txt sORFs.org.db.mouse.fasta
@@ -35,7 +35,7 @@ Required softwares:
 ```java -Xmx10000M -cp MSGFPlus.jar edu.ucsd.msjava.msdbsearch.BuildSA -d uniprot.mouse.protein+sORFs.revCat.fasta -tda 0```
 
 
-#Step 3 Paralle database search using nextflow
+# Step 3 Paralle database search using nextflow
 **3.1 prepare a input, tab delimited file with two column**:  absolute file path of mzmL files and setname. The setnames are used to group mzmL. If you wish to get one FDR for MS files, use one setname for all files. If you wish to calculate separate FDR for a subset of MS files, use different setnames for different subgroups.
 e.g. PXD001250_mzmlfiles_setnames.txt
 
