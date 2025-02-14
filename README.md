@@ -75,7 +75,7 @@ nextflow run main.nf --msgfjar MSGFPlus.jar \
 # Step 4 - Calculate class specific FDR for sORFs
 ```
 sort -s -g -t$'\t' -k13,13 psmtable.txt > psmtable.sorted.txt
-Python subgroupPepFDR.py --input psmtable.sorted.txt --output output_filename --knownproteins uniprot.fa --decoy_prefix XXX_  --psm_qval 0.01
+Python classFDR.py --input PSM_filename --output output_filename --novel_prefix smORF_ --decoy_prefix XXX_smORF --psm_qval 0.01
 
 ```
 
