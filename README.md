@@ -27,9 +27,10 @@ Required softwares:
 
 **2.2 download the Uniprot mouse reference protein database and supplment mouse sORFs proteins**
 
-```python tofasta.py sORFs.org.db.mouse.txt sORFs.org.db.mouse.fasta
+```
+python tofasta.py sORFs.org.db.mouse.txt sORFs.org.db.mouse.fasta
 
-   cat sORFs.org.db.mouse.fasta uniprot.mouse.protein.fasta > uniprot.mouse.protein+sORFs.fasta
+cat sORFs.org.db.mouse.fasta uniprot.mouse.protein.fasta > uniprot.mouse.protein+sORFs.fasta
 ```
 **2.3 create target and decoy protein database**,the decoy DB was produced by reversing protein sequences in the target database.
 
