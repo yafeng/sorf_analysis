@@ -175,9 +175,7 @@ process ConvertmzidTotsv {
 
   """
   source activate mono
-  mono $converter -mzid:$x -tsv:temp.tsv -showDecoy
-  cut_extra_aa.py temp.tsv out.mzid.tsv
-  rm -f temp.tsv
+  mono $converter -mzid:$x -tsv:out.mzid.tsv -showDecoy
   """
 }
 
