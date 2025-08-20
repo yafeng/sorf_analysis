@@ -84,7 +84,8 @@ Python classFDR.py --input PSM_filename --output output_filename --novel_prefix 
 This step is to remomve smORF peptides that match to the sequences of known proteins. This is typically common even though smORF encoded peptides are included in known proteins, the search engine still assign smORF protein accession to these peptides due to known proteins don't have tryptic sites at the N or C-term of peptides. 
 
 ```
-Python txt2fasta.py smORF_psmtable.qval0.01.txt SEP.fa
+### txt2fasta.py assume peptide sequences in 10th column(MSGFplus tsv output)
+Python txt2fasta.py smORF_psmtable.qval0.01.txt SEP.fa  
 
 makeblastdb -in uniprot.mouse.protein.fa -dbtype prot
 
